@@ -6,10 +6,9 @@ class MusicLibraryController
         MusicImporter.new(path).import
     end
 
-    def call
-
-        input = gets.strip
-        # if input != exit
+    def call 
+           input = ""
+        while input != "exit"
 
             puts "Welcome to your music library!"
             puts "To list all of your songs, enter 'list songs'."
@@ -19,7 +18,9 @@ class MusicLibraryController
             puts "To list all of the songs of a particular genre, enter 'list genre'."
             puts "To play a song, enter 'play song'."
             puts "To quit, type 'exit'."
-            puts "What would you like to do?"
+            puts "What would you like to do?"   
+
+            input = gets.strip
 
             case input
             when "list songs"
@@ -35,7 +36,7 @@ class MusicLibraryController
             when "play song"
               play_song
             end 
-        # end
+        end
     end
 
     def list_songs
