@@ -1,57 +1,33 @@
 class Song
-
-    attr_accessor :name, :artist, :genre
+    attr_accessor :name, :artist
 
     @@all = []
 
-    def initialize(name, artist = nil, genre = nil)
+    def initialize(name, artist = nil)
         @name = name
-        self.artist=(artist) if artist != nil
-        self.genre=(genre) if genre != nil
+        @artist = artist if artist != nil
+        save
     end
 
     def self.all
         @@all
     end
 
-    def self.destroy_all
-        self.all.clear
-    end
-
     def save
         @@all << self
     end
 
-    def self.create(song)
-        new_song = self.new(song)
-        new_song.save
-        new_song
+    def self.destroy_all
+        self.all.clear
     end
 
-    def artist=(artist)
-        @artist = artist
-        artist.add_song(self)
+    #what's the difference between Create and Initialize?
+    
+    def self.create(name)
+        created_song = self.new(name)
+        created_song.save
+        created_song
     end
-
-    def self.find_by_name(name)
-        self.all.detect {|song| song.name == name}
-    end
-
-    def self.find_or_create_by_name(name)
-        find_by_name(name) || self.create(name)
-    end
-
-    def self.new_from_filename(name)
-        artist_name = name.split(" - ")[0]
-        song_name = name.split(" - ")[1]
-        genre_name = name.split(" - ")[2].chomp(".mp3")
-        artist = Artist.find_or_create_by_name(artist_name)
-        genre = Genre.find_or_create_by_name(genre_name)
-        self.new(song_name, artist, genre)
-    end
-
-    def self.create_from_filename(name)
-        self.new_from_filename(name).save
-    end
-
+    # binding.pry 
 end
+
