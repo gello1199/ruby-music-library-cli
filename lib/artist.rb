@@ -7,7 +7,6 @@ class Artist
 
     def initialize(name)
         @name = name
-        #AAQ told me that I should never save inside my initialize method
     end
 
     def self.all
@@ -32,12 +31,13 @@ class Artist
         Song.all.select {|song| song.artist == self}
     end
 
-    #How exactly does this code work? Is it just repeating the initialize method in Song?
     
     def add_song(song)
          if song.artist == nil
+
             song.artist = self
          else
+
             nil
          end
     end

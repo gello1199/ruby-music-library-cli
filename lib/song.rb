@@ -6,7 +6,7 @@ class Song
 
     def initialize(name, artist = nil, genre = nil)
         @name = name
-        self.artist = artist if artist != nil #why do we need to change from @artist to self.artist?
+        self.artist = artist if artist != nil 
         self.genre = genre if genre != nil
     end
 
@@ -27,7 +27,6 @@ class Song
         self.all.clear
     end
 
-    #what's the difference between Create and Initialize?
     
     def self.create(name)
         created_song = self.new(name)
@@ -35,7 +34,7 @@ class Song
         created_song
     end
 
-    def self.find_by_name(name) #how does this work?
+    def self.find_by_name(name)
         self.all.detect {|song| song.name == name}
     end
 
